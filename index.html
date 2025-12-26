@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="viewport" content="user-scalable=0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        const linkElement = document.createElement('link');
+        linkElement.rel = 'stylesheet';
+        linkElement.type = 'text/css';
+        const timestamp = new Date().getTime();
+        const updatedCssUrl = `color.css?t=${timestamp}`;
+        linkElement.href = updatedCssUrl;
+        document.head.appendChild(linkElement);
+        
+        // Load custom colors from admin panel
+        const customCSS = localStorage.getItem('customCSS');
+        if (customCSS) {
+            const styleElement = document.createElement('style');
+            styleElement.textContent = customCSS;
+            document.head.appendChild(styleElement);
+        }
+    </script>
+    <script>
+        function openPopup() {
+            document.getElementById('popupModal').style.display = 'flex';
+        }
+    
+        function closePopup() {
+            document.getElementById('popupModal').style.display = 'none';
+        }
+    </script>
+</head>
+<body style="margin: 0;">
+    <div class="page-title">Monthly Pass</div>
+    
+    <div class="qr-container">
+        <a href="#" onclick="openPopup(); return false;">
+            <img class="qr-code" src="your-qr-code-image.png" alt="QR Code">
+        </a>
+    </div>
+    
+    <div class="dotted-separator"></div>
+    
+    <div class="pass-type">INTERSTATE</div>
+    
+    <div class="pass-info">
+        <div class="month-box">
+            <div class="month-text" id="pass_month">NOV</div>
+            <div class="year-text" id="pass_year">2025</div>
+        </div>
+        <div class="zone-info">
+            <div class="zone-number" onclick="updateZoneText()">2</div>
+            <div class="zone-label">ZONE RIDE</div>
+        </div>
+    </div>
+    
+    <div class="bottom-container">
+        <div class="color-strip">
+            <div class="color-block blue"></div>
+            <div class="color-block cyan"></div>
+            <div class="color-block purple"></div>
+        </div>
+        <div class="progress-bar"></div>
+        <div class="expires-text">Expires in <span id="countdown"></span></div>
+        <button class="back-button" onclick="window.history.back()">
+            <span class="back-arrow">&lt;</span> Back to ticket
+        </button>
+    </div>
+    
+    <div id="popupModal" class="popup-modal">
+        <img onclick="closePopup()" src="your-qr-code-image.png" alt="QR Code" class="popup-qr">
+        <div class="tap-back" onclick="closePopup()">Tap to go back</div>
+    </div>
+    
+    <script>
+        function updateMonthAndYear() {
+            var currentDate = new Date();
+            var monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+            var month = monthNames[currentDate.getMonth()];
+            var year = currentDate.getFullYear();
+            document.getElementById("pass_month").textContent = month;
+            document.getElementById("pass_year").textContent = year;
+        }
+
+        function updateCountdown() {
+            const countdown = document.getElementById('countdown');
+            const currentDate = new Date();
+            const currentMonth = currentDate.getMonth();
+            const deadlineDate = new Date(currentDate.getFullYear(), currentMonth + 1, 1, 0, 0, 0);
+
+            const timeRemaining = new Date(deadlineDate - currentDate);
+
+            const days = timeRemaining.getUTCDate() - 1;
+            const hours = timeRemaining.getUTCHours();
+            const minutes = timeRemaining.getUTCMinutes();
+            const seconds = timeRemaining.getUTCSeconds();
+
+            countdown.textContent = `${days.toString().padStart(2, '0')}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function updateZoneText() {
+            const zoneElement = document.querySelector('.zone-number');
+            let currentZone = parseInt(zoneElement.textContent, 10);
+            currentZone = currentZone === 8 ? 2 : currentZone + 1;
+            zoneElement.textContent = currentZone;
+        }
+        
+        updateMonthAndYear();
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+
+</body>
+</html>

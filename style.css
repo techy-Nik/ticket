@@ -1,0 +1,276 @@
+html {
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 100;
+    src: url("SF-Pro-Display-Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: 'SF Pro Display Medium';
+    font-style: normal;
+    font-weight: 100;
+    src: url("SF-Pro-Display-Medium.otf") format("opentype");
+}
+
+body {
+    font-family: 'SF Pro Display', sans-serif;
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+    background-color: #ffffff;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+}
+
+/* Page Title */
+.page-title {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    padding: 20px 0;
+    margin-top: 10px;
+}
+
+/* QR Code Container */
+.qr-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px auto 20px;
+    width: 80%;
+    max-width: 450px;
+}
+
+.qr-code {
+    width: 100%;
+    height: auto;
+    border-radius: 25px;
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 12px solid var(--qr-bg);
+}
+
+/* Dotted Separator */
+.dotted-separator {
+    width: 90%;
+    margin: 15px auto 20px;
+    border-top: 2px dashed #D0D0D0;
+}
+
+/* Pass Type */
+.pass-type {
+    text-align: center;
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--first);
+    letter-spacing: 3px;
+    margin: 25px 0 30px;
+}
+
+/* Pass Info Container */
+.pass-info {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 50px;
+    margin: 40px 30px 60px;
+}
+
+/* Month Box */
+.month-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--first);
+    color: white;
+    border-radius: 12px;
+    padding: 22px 32px;
+    min-width: 130px;
+    border: 4px solid #000000;
+    margin-bottom: 15px;
+}
+
+.month-text {
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.year-text {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: 2px;
+}
+
+/* Zone Info */
+.zone-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.zone-number {
+    font-size: 200px;
+    font-weight: 700;
+    line-height: 0.85;
+    cursor: pointer;
+}
+
+.zone-label {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-top: -15px;
+}
+
+/* Bottom Container */
+.bottom-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding-bottom: 20px;
+}
+
+/* Color Strip */
+.color-strip {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto 15px;
+    gap: 8px;
+}
+
+.color-block {
+    flex: 1;
+    height: 18px;
+    border-radius: 0;
+}
+
+.blue {
+    background: var(--stripone);
+}
+
+.cyan {
+    background: var(--striptwo);
+}
+
+.purple {
+    background: var(--stripthree);
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 90%;
+    height: 6px;
+    background: linear-gradient(to right, #0080FF 0%, #0080FF 100%);
+    border-radius: 10px;
+    margin: 0 auto 20px;
+}
+
+/* Expires Text */
+.expires-text {
+    font-size: 32px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#countdown {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 1px;
+}
+
+/* Back Button */
+.back-button {
+    background-color: var(--button-bg);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 50px;
+    font-size: 24px;
+    font-weight: 600;
+    font-family: 'SF Pro Display', sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.back-arrow {
+    font-size: 28px;
+    font-weight: 300;
+}
+
+/* Popup Modal */
+.popup-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-qr {
+    max-width: 85%;
+    max-height: 70%;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.tap-back {
+    color: white;
+    font-size: 24px;
+    margin-top: 30px;
+    cursor: pointer;
+    font-family: 'SF Pro Display Medium';
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+    .page-title {
+        font-size: 28px;
+    }
+    
+    .pass-type {
+        font-size: 42px;
+    }
+    
+    .zone-number {
+        font-size: 140px;
+    }
+    
+    .zone-label {
+        font-size: 28px;
+    }
+    
+    .month-text {
+        font-size: 36px;
+    }
+    
+    .year-text {
+        font-size: 32px;
+    }
+    
+    .expires-text {
+        font-size: 24px;
+    }
+}

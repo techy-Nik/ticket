@@ -1,0 +1,15 @@
+:root {
+    /* Primary coral/salmon color for INTERSTATE text and month box */
+    --first: #FF5757;
+    
+    /* Color strip colors - matching NJ Transit design exactly */
+    --stripone: #8BBFE0;      /* Light blue */
+    --striptwo: #5CC4CE;      /* Cyan/turquoise */
+    --stripthree: #5E52BA;    /* Purple/indigo */
+    
+    /* QR code border (coral/salmon) */
+    --qr-bg: #FF6B6B;
+    
+    /* Button background */
+    --button-bg: #004A8F;     /* Dark blue for back button */
+}
